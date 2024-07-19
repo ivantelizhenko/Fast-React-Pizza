@@ -10,9 +10,9 @@ import { formatCurrency } from '../../utils/helpers';
 import { fetchAddress } from '../user/userSlice';
 
 // https://uibakery.io/regex-library/phone-number
-const isValidPhone = (str) =>
+const isValidPhone = str =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
-    str
+    str,
   );
 
 function CreateOrder() {
@@ -23,7 +23,7 @@ function CreateOrder() {
     position,
     address,
     error: errorAddress,
-  } = useSelector((state) => state.user);
+  } = useSelector(state => state.user);
   const isLoadingAddress = addressStatus === 'loading';
 
   const navigation = useNavigation();
@@ -91,7 +91,7 @@ function CreateOrder() {
               <Button
                 disabled={isLoadingAddress}
                 type="small"
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   dispatch(fetchAddress());
                 }}
@@ -109,7 +109,7 @@ function CreateOrder() {
             name="priority"
             id="priority"
             value={withPriority}
-            onChange={(e) => setWithPriority(e.target.checked)}
+            onChange={e => setWithPriority(e.target.checked)}
           />
           <label htmlFor="priority" className="font-medium">
             Want to yo give your order priority?

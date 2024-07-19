@@ -20,7 +20,7 @@ function Order() {
     function () {
       if (!fetcher.data && fetcher.state === 'idle') fetcher.load('/menu');
     },
-    [fetcher]
+    [fetcher],
   );
 
   // Everyone can search for all orders, so for privacy reasons we're gonna gonna exclude names or address, these are only for the restaurant staff
@@ -65,14 +65,14 @@ function Order() {
       </div>
 
       <ul className="dive-stone-200 divide-y border-b border-t">
-        {cart.map((item) => (
+        {cart.map(item => (
           <OrderItem
             item={item}
             key={item.pizzaId}
             isLoadingIngredients={fetcher.state === 'loading'}
             ingredients={
-              fetcher?.data?.find((el) => el.id === item.pizzaId)
-                ?.ingredients ?? []
+              fetcher?.data?.find(el => el.id === item.pizzaId)?.ingredients ??
+              []
             }
           />
         ))}
